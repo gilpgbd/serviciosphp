@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+      content="width=device-width,
+       initial-scale=1.0">
+    <title>
+      Saludo con Servicio
+    </title>
+  </head>
+  <body>
+    <form id="forma">
+      <h1>Saludo</h1>
+      <p>
+        <label>
+          Nombre
+          <input name="nombre">
+        </label>
+      </p>
+      <p>
+        <button>Calcular</button>
+      </p>
+      <p>
+        <output name="salida">
+        </output>
+      </p>
+      <p>
+        &copy; 2021
+        Gilberto Pacheco Gallegos.
+      </p>
+    </form>
+    <script type="module">
+      forma.addEventListener(
+        "submit",
+        async evt => {
+          try {
+            evt.preventDefault();
+            const formData =
+              new FormData(forma);
+            const resp =
+              await fetch(
+                "srv/saludo.php",
+                {
+                  method: "POST",
+                  body: formData
+                });
+            if (resp.ok) {
+              forma.salida.value =
+                await resp.text();
+            } else if (resp.status
+              === 500) {
+              throw new Error(
+                await resp.text());
+            } else {
+              throw new Error(
+                resp.statusText);
+            }
+          } catch (e) {
+            console.error(e);
+            forma.salida.value =
+              e.message;
+          }
+        });
+    </script>
+  </body>
+</html>

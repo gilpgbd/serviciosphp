@@ -2,6 +2,7 @@
 mb_internal_encoding("UTF-8");
 require_once "./conecta.php";
 require_once "./util.php";
+require_once "./seguridad.php";
 require_once "./DaoImagen.php";
 try {
   header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");

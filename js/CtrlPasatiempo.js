@@ -10,8 +10,7 @@ import {
   muestraPasatiempos
 } from "./navegacion.js";
 import {
-  iniciaSesión,
-  noAutorizado
+  tieneRol
 } from "./seguridad.js";
 
 const params =
@@ -28,21 +27,8 @@ forma.objId.value = id;
 
 protege();
 async function protege() {
-  const usuario =
-    await recibe(fetch(
-      "srv/sesion.php?" +
-      params));
-  if (usuario && usuario.cue) {
-    const roles = new Set(
-      usuario.rolIds || []);
-    if (roles.
-      has("Cliente")) {
+  if (await tieneRol(["Cliente"])) {
       busca();
-    } else {
-      noAutorizado();
-    }
-  } else {
-    iniciaSesión();
   }
 }
 /** Busca y muestra los datos que

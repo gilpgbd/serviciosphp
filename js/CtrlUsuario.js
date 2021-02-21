@@ -10,8 +10,7 @@ import {
   muestraUsuarios
 } from "./navegacion.js";
 import {
-  iniciaSesión,
-  noAutorizado
+  tieneRol
 } from "./seguridad.js";
 import {
   checksRoles,
@@ -37,20 +36,8 @@ forma.objId.value = id;
 
 protege();
 async function protege() {
-  const usuario =
-    await recibe(fetch(
-      "srv/sesion.php"));
-  if (usuario && usuario.cue) {
-    const roles = new Set(
-      usuario.rolIds || []);
-    if (roles.has(
-      "Administrador")) {
+  if (await tieneRol(["Administrador"])) {
       busca();
-    } else {
-      noAutorizado();
-    }
-  } else {
-    iniciaSesión();
   }
 }
 

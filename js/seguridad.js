@@ -19,7 +19,8 @@ export function noAutorizado() {
 }
 
 /**
- * @param {string[]} roles */
+ * @param {string[]} roles
+ * @returns {Promise<boolean>} */
 export async function
   tieneRol(roles) {
   const usuario =

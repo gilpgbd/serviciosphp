@@ -6,8 +6,7 @@ import {
   muestraError
 } from "../lib/util.js";
 import {
-  iniciaSesión,
-  noAutorizado
+  tieneRol
 } from "./seguridad.js";
 
 /** @type {HTMLUListElement} */
@@ -15,20 +14,8 @@ const lista = document.
   querySelector("#lista");
 protege();
 async function protege() {
-  const usuario =
-    await recibe(fetch(
-      "srv/sesion.php"));
-  if (usuario && usuario.cue) {
-    const roles = new Set(
-      usuario.rolIds || []);
-    if (roles.has(
-      "Administrador")) {
+  if (await tieneRol(["Administrador"])) {
       consulta();
-    } else {
-      noAutorizado();
-    }
-  } else {
-    iniciaSesión();
   }
 }
 async function consulta() {

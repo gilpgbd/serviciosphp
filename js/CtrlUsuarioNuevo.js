@@ -4,9 +4,7 @@ import {
   muestraError
 } from "../lib/util.js";
 import {
-  cargaRoles,
-  iniciaSesión,
-  noAutorizado
+  tieneRol
 } from "./seguridad.js";
 import {
   checksRoles,
@@ -21,24 +19,12 @@ const listaRoles = document.
 
   protege();
   async function protege() {
-    const usuario =
-      await recibe(fetch(
-        "srv/sesion.php"));
-    if (usuario && usuario.cue) {
-      const roles = new Set(
-        usuario.rolIds || []);
-      if (roles.has(
-      "Administrador")) {
+  if (await tieneRol(["Administrador"])) {
       selectPasatiempos(
         forma.pasatiempoId, "");
       checksRoles(listaRoles, []);
       configuraSubmit(forma,
         "srv/usuarioAgrega.php",
         "usuarios.html");
-      } else {
-      noAutorizado();
-    }
-  } else {
-    iniciaSesión();
   }
 }

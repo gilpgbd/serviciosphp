@@ -18,6 +18,29 @@ export function noAutorizado() {
   location.href = "index.html";
 }
 
+/**
+ * @param {string[]} roles */
+export async function
+  tieneRol(roles) {
+  const usuario =
+    await recibe(fetch(
+      "srv/sesion.php?" +
+      params));
+  if (usuario && usuario.cue) {
+    const rolIds = new Set(
+      usuario.rolIds || []);
+    for (const rol of roles) {
+      if (roles.has(rol)) {
+        return true;
+      }
+    }
+    noAutorizado();
+  } else {
+    iniciaSesión();
+  }
+  return false;
+}
+
 export async function
   terminaSesión() {
   try {

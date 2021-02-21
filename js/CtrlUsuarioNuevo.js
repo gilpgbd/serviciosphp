@@ -1,8 +1,6 @@
-import { configuraSubmit, recibe } from "../lib/servicios.js";
 import {
-  getString,
-  muestraError
-} from "../lib/util.js";
+  configuraSubmit
+} from "../lib/servicios.js";
 import {
   tieneRol
 } from "./seguridad.js";
@@ -17,14 +15,15 @@ const forma = document["forma"];
 const listaRoles = document.
   querySelector("#listaRoles");
 
-  protege();
-  async function protege() {
-  if (await tieneRol(["Administrador"])) {
-      selectPasatiempos(
-        forma.pasatiempoId, "");
-      checksRoles(listaRoles, []);
-      configuraSubmit(forma,
-        "srv/usuarioAgrega.php",
-        "usuarios.html");
+protege();
+async function protege() {
+  if (await tieneRol(
+    ["Administrador"])) {
+    selectPasatiempos(
+      forma.pasatiempoId, "");
+    checksRoles(listaRoles, []);
+    configuraSubmit(forma,
+      "srv/usuarioAgrega.php",
+      "usuarios.html");
   }
 }

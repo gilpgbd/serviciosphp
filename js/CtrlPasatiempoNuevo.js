@@ -1,5 +1,5 @@
 import {
-  configuraSubmit, recibe
+  configuraSubmit
 } from "../lib/servicios.js";
 import {
   tieneRol
@@ -10,9 +10,10 @@ const forma = document["forma"];
 
 protege();
 async function protege() {
-  if (await tieneRol(["Cliente"])) {
-      configuraSubmit(forma,
-        "srv/pasatiempoAgrega.php",
-        "pasatiempos.html");
+  if (await tieneRol(
+    ["Cliente"])) {
+    configuraSubmit(forma,
+      "srv/pasatiempoAgrega.php",
+      "pasatiempos.html");
   }
 }

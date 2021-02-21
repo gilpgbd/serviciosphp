@@ -12,31 +12,62 @@ function aborta(\Throwable $th)
   http_response_code(500);
   echo $th->getMessage();
 }
-function archivoRecibido($nombre): bool
+function
+archivoRecibido($nombre): bool
 {
-  return isset($_FILES[$nombre]) && $_FILES[$nombre]["size"] > 0;
+  return
+    isset($_FILES[$nombre]) &&
+    $_FILES[$nombre]["size"] > 0;
 }
-function leeBytes(string $archivo): ?string
+function
+leeBytes(string $archivo): ?string
 {
   return archivoRecibido($archivo)
-    ? file_get_contents($_FILES[$archivo]["tmp_name"])
+    ? file_get_contents(
+      $_FILES[$archivo]["tmp_name"]
+    )
     : null;
 }
-function leeCampo(string $nombreDelCampo): string
-{
-  return trim($_POST[$nombreDelCampo]);
+function leeValor(
+  string $nombreDelCampo
+): string {
+  $valor =
+    isset($_POST[$nombreDelCampo])
+    ? $_POST[$nombreDelCampo]
+    : "";
+  return $valor;
 }
-function leeParametro(string $nombreDelCampo): string
-{
-  return trim($_GET[$nombreDelCampo]);
+function leeCampo(
+  string $nombreDelCampo
+): string {
+  $valor =
+    leeValor($nombreDelCampo);
+  return trim($valor);
 }
-function leeForanea(string $nombreDelCampo): ?string
-{
-  $valor = $_POST[$nombreDelCampo];
+function leeParámetro(
+  string $nombreDelCampo
+): string {
+  $valor =
+    isset($_GET[$nombreDelCampo])
+    ? $_GET[$nombreDelCampo]
+    : "";
+  return trim($valor);
+}
+function leeForánea(
+  string $nombreDelCampo
+): ?string {
+  $valor =
+    isset($_POST[$nombreDelCampo])
+    ? $_POST[$nombreDelCampo]
+    : null;
   return $valor ? $valor : null;
 }
-function leeArray(string $nombreDelCampo): array
-{
-  $valor = $_POST[$nombreDelCampo];
-  return $valor ? $valor : [];
+function leeArray(
+  string $nombreDelCampo
+): array {
+  $valor =
+    isset($_POST[$nombreDelCampo])
+    ? $_POST[$nombreDelCampo]
+    : [];
+  return $valor;
 }

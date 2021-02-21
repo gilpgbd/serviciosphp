@@ -11,13 +11,6 @@ export function
   location.href = "inicia.html";
 }
 
-export function noAutorizado() {
-  //Despliega un cuadro de alerta.
-  alert("No autorizado.");
-  // Abre la página index.html.
-  location.href = "index.html";
-}
-
 /**
  * @param {string[]} roles
  * @returns {Promise<boolean>} */
@@ -25,17 +18,17 @@ export async function
   tieneRol(roles) {
   const usuario =
     await recibe(fetch(
-      "srv/sesion.php?" +
-      params));
+      "srv/sesion.php"));
   if (usuario && usuario.cue) {
     const rolIds = new Set(
       usuario.rolIds || []);
     for (const rol of roles) {
-      if (roles.has(rol)) {
+      if (rolIds.has(rol)) {
         return true;
       }
     }
-    noAutorizado();
+    alert("No autorizado.");
+    location.href = "index.html";
   } else {
     iniciaSesión();
   }

@@ -10,14 +10,21 @@ try {
   header("Pragma: no-cache");
   session_start();
   $bd = conecta();
-  if (tieneRol($bd, ["Administrador", "Cliente"])) {
+  if (tieneRol(
+    $bd,
+    ["Administrador", "Cliente"]
+  )) {
     $id = $_GET["id"];
     $bd = conecta();
     if ($id) {
-      $imagen = DaoImagen::busca($bd, $id);
+      $imagen = DaoImagen::busca(
+        $bd,
+        $id
+      );
       if (!$imagen) {
         throw new Exception(
-          "Registro no encontrado."
+          "Registro no " .
+            "encontrado."
         );
       }
       echo $imagen->bytes;

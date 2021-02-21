@@ -1,7 +1,8 @@
 <?php
 class DaoPasatiempo
 {
-  public static function consulta(\PDO $bd)
+  public static function
+  consulta(\PDO $bd)
   {
     $stmt = $bd->query(
       "SELECT id, nombre
@@ -69,4 +70,5 @@ class DaoPasatiempo
     $stmt->execute([
       ":id" => $id
     ]);
-  }}
+  }
+}

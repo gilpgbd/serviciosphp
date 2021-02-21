@@ -1,7 +1,8 @@
 <?php
 class DaoUsuarioRol
 {
-  public static function buscaRoles(
+  public static function
+  buscaRoles(
     \PDO $bd,
     string $usuarioCue
   ): array {
@@ -32,7 +33,8 @@ class DaoUsuarioRol
          VALUES
           (:usuarioCue,:rolId)"
       );
-      foreach ($rolIds as $rolId) {
+      foreach ($rolIds as
+        $rolId) {
         $stmt->execute(
           [
             ":usuarioCue" =>

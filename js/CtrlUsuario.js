@@ -7,9 +7,6 @@ import {
   muestraError
 } from "../lib/util.js";
 import {
-  muestraUsuarios
-} from "./navegacion.js";
-import {
   tieneRol
 } from "./seguridad.js";
 import {
@@ -36,8 +33,9 @@ forma.objId.value = id;
 
 protege();
 async function protege() {
-  if (await tieneRol(["Administrador"])) {
-      busca();
+  if (await tieneRol(
+    ["Administrador"])) {
+    busca();
   }
 }
 
@@ -52,7 +50,8 @@ async function busca() {
         "srv/usuario.php?" +
         params));
     forma.cue.value = id || "";
-    forma.nombre.value = usuario.nombre || "";
+    forma.nombre.value =
+      usuario.nombre || "";
     img.src = usuario.avatar;
     selectPasatiempos(
       forma.pasatiempoId,
@@ -64,10 +63,12 @@ async function busca() {
       "usuarios.html");
     configuraElimina(eliminar,
       "Confirma la eliminación",
-      `srv/usuarioElimina?${params}`,
+      "srv/usuarioElimina?" +
+      params,
       "usuarios.html");
   } catch (e) {
     muestraError(e);
-    muestraUsuarios();
+    location.href =
+      "usuarios.html";
   }
 }

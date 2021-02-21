@@ -1,63 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-      content="width=device-width,
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width,
        initial-scale=1.0">
-    <title>Inicia Sesión</title>
-    <script type="module"
-      src="cmp/mi-nav.js">
-      </script>
-    <script type="module"
-      src="cmp/mi-footer.js">
-      </script>
-    <link rel="stylesheet"
-      href="css/estilos.css">
-  </head>
-  <body>
-    <form name="forma">
-      <header>
-        <h1>Inicia Sesión</h1>
-      </header>
-      <p>
-        <label>
-          Cue
-          <input name="cue"
-            required>
-        </label>
-      </p>
-      <p>
-        <label>
-          Mtch
-          <input name="mtch"
-            type="password"
-            required>
-        </label>
-      </p>
-      <p>
-        <button type="submit">
-          Iniciar Sesión
-        </button>
-      </p>
-      <mi-footer></mi-footer>
-    </form>
-    <script type="module">
-      import {
-        configuraSubmit
-      } from
-        "./lib/servicios.js";
-      import {
-        muestraError
-      } from
-        "./lib/util.js";
-      import {
-        muestraIndex
-      } from
-        "./js/navegacion.js";
-      configuraSubmit(forma,
-        "srv/inicia.php",
-        "index.html");
+  <title>Inicia Sesión</title>
+  <script type="module"
+    src="cmp/mi-nav.js">
     </script>
-  </body>
+  <script type="module"
+    src="cmp/mi-footer.js">
+    </script>
+  <link rel="stylesheet"
+    href="css/estilos.css">
+</head>
+<body>
+  <form name="forma">
+    <header>
+      <h1>Inicia Sesión</h1>
+    </header>
+    <p>
+      <label>
+        Cue
+        <input name="cue"
+          required>
+      </label>
+    </p>
+    <p>
+      <label>
+        Mtch
+        <input name="mtch"
+          type="password"
+          required>
+      </label>
+    </p>
+    <p>
+      <button type="submit">
+        Iniciar Sesión
+      </button>
+    </p>
+    <mi-footer></mi-footer>
+  </form>
+  <script type="module">
+    import {
+      configuraSubmit
+    } from
+      "./lib/servicios.js";
+    configuraSubmit(forma,
+      "srv/inicia.php",
+      "index.html");
+  </script>
+</body>
 </html>

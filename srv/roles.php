@@ -7,8 +7,12 @@ require_once "./DaoRol.php";
 try {
   session_start();
   $bd = conecta();
-  if (tieneRol($bd, ["Administrador"])) {
-    $listado = DaoRol::consulta($bd);
+  if (tieneRol(
+    $bd,
+    ["Administrador"]
+  )) {
+    $listado =
+      DaoRol::consulta($bd);
     echo json_encode($listado);
   }
 } catch (\Throwable $th) {

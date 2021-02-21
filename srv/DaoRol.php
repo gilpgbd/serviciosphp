@@ -1,7 +1,8 @@
 <?php
 class DaoRol
 {
-  public static function consulta(\PDO $bd): array
+  public static function
+  consulta(\PDO $bd): array
   {
     $stmt = $bd->query(
       "SELECT id, descripcion

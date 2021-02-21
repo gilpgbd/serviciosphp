@@ -1,15 +1,20 @@
 <?php
 class DaoImagen
 {
-  public static function busca(\PDO $bd, int $id)
+  public static function
+  busca(\PDO $bd, int $id)
   {
     $stmt = $bd->prepare(
       "SELECT id, bytes
        FROM Imagen
        WHERE id = :id"
     );
-    $stmt->execute([":id" => $id]);
-    $stmt->setFetchMode(PDO::FETCH_OBJ);
+    $stmt->execute(
+      [":id" => $id]
+    );
+    $stmt->setFetchMode(
+      PDO::FETCH_OBJ
+    );
     return $stmt->fetch();
   }
   public static function agrega(

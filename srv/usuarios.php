@@ -6,10 +6,13 @@ require_once "./seguridad.php";
 require_once "./DaoUsuario.php";
 session_start();
 try {
-  mb_internal_encoding("UTF-8");
   $bd = conecta();
-  if (tieneRol($bd, ["Administrador"])) {
-    $listado = DaoUsuario::consulta($bd);
+  if (tieneRol(
+    $bd,
+    ["Administrador"]
+  )) {
+    $listado =
+      DaoUsuario::consulta($bd);
     echo json_encode($listado);
   }
 } catch (\Throwable $th) {

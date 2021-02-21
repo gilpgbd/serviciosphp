@@ -5,6 +5,7 @@ function conecta(): PDO
     "mysql:dbname=servicios;host=localhost",
     "ususerv",
     "usupass",
-    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    [PDO::ATTR_ERRMODE =>
+    PDO::ERRMODE_EXCEPTION]
   );
 }

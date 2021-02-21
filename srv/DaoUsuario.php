@@ -1,22 +1,28 @@
 <?php
 require_once "./DaoImagen.php";
-require_once "./DaoUsuarioRol.php";
+require_once
+  "./DaoUsuarioRol.php";
 class DaoUsuario
 {
-  public static function consulta(\PDO $bd): array
+  public static function
+  consulta(\PDO $bd): array
   {
     $stmt = $bd->query(
       "SELECT
         u.cue AS cue,
-        CONCAT('srv/imagen.php?id=',
-          u.imagenId) AS avatar,
+        CONCAT(
+          'srv/imagen.php?id=',
+          u.imagenId)
+          AS avatar,
         u.nombre AS nombre,
         IFNULL(p.nombre,
           '-- Sin Pasatiempo --')
           AS pasatiempo,
         GROUP_CONCAT(
-          ur.rolId ORDER BY ur.rolId
-          SEPARATOR ',') AS roles
+          ur.rolId
+          ORDER BY ur.rolId
+          SEPARATOR ',')
+          AS roles
       FROM Usuario u
       LEFT JOIN UsuarioRol ur
       ON u.cue = ur.usuarioCue
@@ -36,8 +42,10 @@ class DaoUsuario
     $stmt = $bd->prepare(
       "SELECT
         cue,
-        CONCAT('srv/imagen.php?id=',
-            imagenId) AS avatar,
+        CONCAT(
+          'srv/imagen.php?id=',
+          imagenId)
+          AS avatar,
         imagenId,
         nombre,
         pasatiempoId
@@ -68,8 +76,10 @@ class DaoUsuario
     $stmt = $bd->prepare(
       "SELECT
         cue,
-        CONCAT('srv/imagen.php?id=',
-            imagenId) AS avatar,
+        CONCAT(
+          'srv/imagen.php?id=',
+          imagenId)
+          AS avatar,
         nombre
       FROM Usuario
       WHERE cue = :cue AND
@@ -99,17 +109,27 @@ class DaoUsuario
     );
     $stmt = $bd->prepare(
       "INSERT INTO Usuario
-         (cue, imagenId, mtch, nombre, pasatiempoId)
-      VALUES (:cue,:imagenId,SHA2(:mtch,256),:nombre,:pasatiempoId)"
+        (cue, imagenId,
+          mtch, nombre,
+          pasatiempoId)
+      VALUES
+        (:cue,:imagenId,
+          SHA2(:mtch,256),:nombre,
+          :pasatiempoId)"
     );
     $stmt->execute([
       ":cue" => $cue,
       ":imagenId" => $imagenId,
       ":mtch" => $mtch,
       ":nombre" => $nombre,
-      ":pasatiempoId" => $pasatiempoId,
+      ":pasatiempoId" =>
+      $pasatiempoId,
     ]);
-    DaoUsuarioRol::agrega($bd, $cue, $rolIds);
+    DaoUsuarioRol::agrega(
+      $bd,
+      $cue,
+      $rolIds
+    );
   }
   public static function modifica(
     \PDO $bd,
@@ -120,7 +140,8 @@ class DaoUsuario
     ?string $pasatiempoId,
     array $rolIds
   ) {
-    $modelo = static::busca($bd, $cue);
+    $modelo =
+      static::busca($bd, $cue);
     if ($modelo) {
       if ($bytes) {
         if ($modelo->imagenId) {
@@ -130,40 +151,60 @@ class DaoUsuario
             $bytes
           );
         } else {
-          $modelo->imagenId = DaoImagen::agrega(
-            $bd,
-            $bytes
-          );
+          $modelo->imagenId =
+            DaoImagen::agrega(
+              $bd,
+              $bytes
+            );
         }
       }
       $stmt1 = $bd->prepare(
         "UPDATE Usuario
-      SET nombre = :nombre, pasatiempoId = :pasatiempoId, imagenId = :imagenId
+      SET nombre = :nombre,
+        pasatiempoId =
+          :pasatiempoId,
+        imagenId = :imagenId
       WHERE cue = :cue"
       );
       $stmt1->execute([
         ":nombre" => $nombre,
-        ":pasatiempoId" => $pasatiempoId,
-        ":imagenId" => $modelo->imagenId,
+        ":pasatiempoId" =>
+        $pasatiempoId,
+        ":imagenId" =>
+        $modelo->imagenId,
         ":cue" => $cue
       ]);
       if ($mtch) {
         $stmt2 = $bd->prepare(
           "UPDATE Usuario
-        SET mtch = SHA2(:mtch,256)
-        WHERE cue = :cue"
+          SET
+            mtch = SHA2(:mtch,256)
+          WHERE cue = :cue"
         );
-        $stmt2->execute([":mtch" => $mtch, ":cue" => $cue]);
+        $stmt2->execute(
+          [
+            ":mtch" => $mtch,
+            ":cue" => $cue
+          ]
+        );
       }
-      DaoUsuarioRol::elimina($bd, $cue);
-      DaoUsuarioRol::agrega($bd, $cue, $rolIds);
+      DaoUsuarioRol::elimina(
+        $bd,
+        $cue
+      );
+      DaoUsuarioRol::agrega(
+        $bd,
+        $cue,
+        $rolIds
+      );
     }
   }
   public static function elimina(
     \PDO $bd,
     string $cue
   ) {
-    $modelo = static::busca($bd, $cue);
+    $modelo =
+      static::busca($bd, $cue);
     if ($modelo) {
       DaoUsuarioRol::elimina(
         $bd,
@@ -176,7 +217,10 @@ class DaoUsuario
       $stmt->execute([
         ":cue" => $cue
       ]);
-      DaoImagen::elimina($bd, $modelo->imagenId);
+      DaoImagen::elimina(
+        $bd,
+        $modelo->imagenId
+      );
     }
   }
 }

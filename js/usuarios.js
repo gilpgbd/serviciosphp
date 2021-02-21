@@ -1,4 +1,6 @@
-import { recibe } from "../lib/servicios.js";
+import {
+  recibe
+} from "../lib/servicios.js";
 import {
   cod, muestraError
 } from "../lib/util.js";
@@ -17,7 +19,9 @@ export async function
     valor) {
   valor = valor || "";
   try {
-    /**@type {import("./tipos.js").Pasatiempo[]} */
+    /**@type {
+        import("./tipos.js").
+        Pasatiempo[]} */
     const pasatiempos =
       await recibe(fetch(
         "srv/pasatiempos.php"));
@@ -47,7 +51,9 @@ export async function
   const set =
     new Set(valor || []);
   try {
-    /**@type {import("./tipos.js").Rol[]} */
+    /**@type {
+        import("./tipos.js").
+        Rol[]} */
     const roles =
       await recibe(fetch(
         "srv/roles.php"));
@@ -62,7 +68,8 @@ export async function
           <label class="fila">
             <input type="checkbox"
                 name="rolIds[]"
-                value="${cod(r.id)}"
+                value=
+                "${cod(r.id)}"
                 ${checked}>
             <span class="texto">
               <strong
@@ -71,7 +78,8 @@ export async function
               </strong>
               <span
                class="secundario">
-              ${cod(r.descripcion)}
+              ${cod(
+            r.descripcion)}
               </span>
             </span>
           </label>

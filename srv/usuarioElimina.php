@@ -7,8 +7,11 @@ require_once "./DaoUsuario.php";
 session_start();
 try {
   $bd = conecta();
-  if (tieneRol($bd, ["Administrador"])) {
-    $id = trim($_GET["id"]);
+  if (tieneRol(
+    $bd,
+    ["Administrador"]
+  )) {
+    $id = leeParámetro("id");
     valida($id, "Falta id");
     $bd->beginTransaction();
     DaoUsuario::elimina(

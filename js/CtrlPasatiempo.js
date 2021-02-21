@@ -7,9 +7,6 @@ import {
   muestraError
 } from "../lib/util.js";
 import {
-  muestraPasatiempos
-} from "./navegacion.js";
-import {
   tieneRol
 } from "./seguridad.js";
 
@@ -27,8 +24,9 @@ forma.objId.value = id;
 
 protege();
 async function protege() {
-  if (await tieneRol(["Cliente"])) {
-      busca();
+  if (await tieneRol(
+    ["Cliente"])) {
+    busca();
   }
 }
 /** Busca y muestra los datos que
@@ -41,7 +39,8 @@ async function busca() {
                 Pasatiempo} */
     const pasatiempo =
       await recibe(fetch(
-        `srv/pasatiempo.php?${params}`));
+        "srv/pasatiempo.php?" +
+        params));
     forma.nombre.value =
       pasatiempo.nombre || "";
     configuraSubmit(forma,
@@ -49,10 +48,12 @@ async function busca() {
       "pasatiempos.html");
     configuraElimina(eliminar,
       "Confirma la eliminación",
-      `srv/pasatiempoElimina?${params}`,
+      "srv/pasatiempoElimina?" +
+      params,
       "pasatiempos.html");
   } catch (e) {
     muestraError(e);
-    muestraPasatiempos();
+    location.href =
+      "pasatiempos.html";
   }
 }

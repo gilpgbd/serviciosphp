@@ -7,13 +7,17 @@ require_once "./DaoUsuario.php";
 try {
   session_start();
   $bd = conecta();
-  if (tieneRol($bd, ["Administrador"])) {
-    $cue = trim($_GET["id"]);
+  if (tieneRol(
+    $bd,
+    ["Administrador"]
+  )) {
+    $cue = leeParámetro("id");
     valida($cue, "Falta id");
-    $modelo = DaoUsuario::busca(
-      $bd,
-      $cue
-    );
+    $modelo =
+      DaoUsuario::busca(
+        $bd,
+        $cue
+      );
     if ($modelo) {
       echo json_encode($modelo);
     } else {

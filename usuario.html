@@ -1,115 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-      content="width=device-width,
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width,
        initial-scale=1.0">
-    <title>Usuario</title>
-    <script type="module"
-      src="cmp/mi-nav.js">
-      </script>
-    <script type="module"
-      src="cmp/mi-footer.js">
-      </script>
-    <script type="module"
-      src="cmp/mi-progreso.js">
-      </script>
-    <link rel="stylesheet"
-      href="css/estilos.css">
-  </head>
-  <body>
-    <form name="forma">
-      <mi-nav></mi-nav>
-      <header>
-        <h1>
-          <output name="cue">
-            Usuario
-            <mi-progreso>
-            </mi-progreso>
-          </output>
-        </h1>
-        <div class="herramientas">
-          <a href="usuarios.html">
-            Cancelar</a>
-          <button>Guardar</button>
-          <button id="eliminar"
-            type="button">
-            Eliminar
-          </button>
-        </div>
-      </header>
-      <figure id="figure">
-        <img
-          alt="Falta el Avatar">
-      </figure>
-      <p>
-        <label>
-          Mtch
-          <input name="mtch"
-            type="password">
-        </label>
-        <small>
-          5 a 25 letras o dígitos.
-        </small>
-      </p>
-      <p>
-        <label>
-          Repite Mtch
-          <input name="mtch2"
-            type="password">
-        </label>
-      </p>
-      <p>
-        <input type="hidden" name="objId">
-        <label>
-          Avatar
-          <input name="avatar"
-            type="file"
-            accept=".png,.jpg,.jpeg,.gif">
-        </label>
-      </p>
-      <p>
-        <label>
-          Nombre
-          <input name="nombre"
-            value="Cargando…"
-            required>
-        </label>
-      </p>
-      <!--
-        Maneja una asociación a
-        uno.
-      -->
-      <p>
-        <label>
-          Pasatiempo
-          <select
-            name="pasatiempoId">
-            <option>
-              Cargando…
-            </option>
-          </select>
-        </label>
-      </p>
-      <!--
-        Maneja una asociación a
-        muchos.
-      -->
-      <fieldset>
-        <legend>Roles</legend>
-        <ul id="listaRoles"
-          class="checks">
-          <li>
-            <mi-progreso>
-            </mi-progreso>
-          </li>
-        </ul>
-      </fieldset>
-      <mi-footer></mi-footer>
-    </form>
-    <script type="module"
-      src="js/CtrlUsuario.js">
-      </script>
-  </body>
+  <title>Usuario</title>
+  <script type="module"
+    src="cmp/mi-nav.js">
+    </script>
+  <script type="module"
+    src="cmp/mi-footer.js">
+    </script>
+  <script type="module"
+    src="cmp/mi-progreso.js">
+    </script>
+  <link rel="stylesheet"
+    href="css/estilos.css">
+</head>
+<body>
+  <form name="forma">
+    <mi-nav></mi-nav>
+    <header>
+      <h1>
+        <output name="cue">
+          Usuario
+          <mi-progreso>
+          </mi-progreso>
+        </output>
+      </h1>
+      <div class="herramientas">
+        <a href="usuarios.html">
+          Cancelar</a>
+        <button>Guardar</button>
+        <button id="eliminar"
+          type="button">
+          Eliminar
+        </button>
+      </div>
+    </header>
+    <figure id="figure">
+      <img alt="Falta el Avatar">
+    </figure>
+    <p>
+      <label>
+        Mtch
+        <input name="mtch"
+        pattern="\w{5,25}"
+        type="password">
+      </label>
+      <small>
+        5 a 25 letras o dígitos.
+      </small>
+    </p>
+    <p>
+      <label>
+        Repite Mtch
+        <input name="mtch2"
+          type="password">
+      </label>
+    </p>
+    <p>
+      <input type="hidden"
+        name="objId">
+      <label>
+        Avatar
+        <input name="avatar"
+          type="file"
+          accept=".png,.jpg,.jpeg,.gif">
+      </label>
+    </p>
+    <p>
+      <label>
+        Nombre
+        <input name="nombre"
+          value="Cargando…"
+          required>
+      </label>
+    </p>
+    <!--
+      Maneja una asociación a uno.
+    -->
+    <p>
+      <label>
+        Pasatiempo
+        <select
+          name="pasatiempoId">
+          <option>
+            Cargando…
+          </option>
+        </select>
+      </label>
+    </p>
+    <!--
+      Maneja una asociación a
+      muchos.
+    -->
+    <fieldset>
+      <legend>Roles</legend>
+      <ul id="listaRoles"
+        class="checks">
+        <li>
+          <mi-progreso>
+          </mi-progreso>
+        </li>
+      </ul>
+    </fieldset>
+    <mi-footer></mi-footer>
+  </form>
+  <script type="module"
+    src="js/CtrlUsuario.js">
+    </script>
+</body>
 </html>

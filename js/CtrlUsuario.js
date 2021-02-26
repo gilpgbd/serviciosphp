@@ -61,7 +61,7 @@ async function busca() {
     configuraElimina(
       forma.eliminar,
       "Confirma la eliminación",
-      "srv/usuarioElimina?" +
+      "srv/usuarioElimina.php?" +
       params,
       "usuarios.html");
   } catch (e) {

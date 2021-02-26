@@ -46,7 +46,7 @@ async function busca() {
     configuraElimina(
       forma.eliminar,
       "Confirma la eliminación",
-      "srv/pasatiempoElimina?" +
+      "srv/pasatiempoElimina.php?" +
       params,
       "pasatiempos.html");
   } catch (e) {

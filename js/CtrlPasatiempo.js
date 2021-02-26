@@ -26,6 +26,7 @@ async function protege() {
     busca();
   }
 }
+
 /** Busca y muestra los datos que
  * corresponden al id recibido. */
 async function busca() {

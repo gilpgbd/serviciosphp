@@ -12,13 +12,16 @@ import {
 /** @type {HTMLUListElement} */
 const lista = document.
   querySelector("#lista");
+
 protege();
+
 async function protege() {
   if (await tieneRol(
     ["Cliente"])) {
     consulta();
   }
 }
+
 async function consulta() {
   try {
     /** @type {

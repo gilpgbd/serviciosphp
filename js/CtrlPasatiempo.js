@@ -16,9 +16,6 @@ const params =
 const id = params.get("id");
 /** @type {HTMLFormElement} */
 const forma = document["forma"];
-/** @type {HTMLButtonElement} */
-const eliminar = document.
-  querySelector("#eliminar");
 
 forma.objId.value = id;
 
@@ -46,7 +43,8 @@ async function busca() {
     configuraSubmit(forma,
       "srv/pasatiempoModifica.php",
       "pasatiempos.html");
-    configuraElimina(eliminar,
+    configuraElimina(
+      forma.eliminar,
       "Confirma la eliminación",
       "srv/pasatiempoElimina?" +
       params,

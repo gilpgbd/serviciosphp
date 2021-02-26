@@ -20,9 +20,6 @@ const params =
 const id = params.get("id");
 /** @type {HTMLFormElement} */
 const forma = document["forma"];
-/** @type {HTMLButtonElement} */
-const eliminar = document.
-  querySelector("#eliminar");
 const img = document.
   querySelector("img");
 /** @type {HTMLUListElement} */
@@ -61,7 +58,8 @@ async function busca() {
     configuraSubmit(forma,
       "srv/usuarioModifica.php",
       "usuarios.html");
-    configuraElimina(eliminar,
+    configuraElimina(
+      forma.eliminar,
       "Confirma la eliminación",
       "srv/usuarioElimina?" +
       params,

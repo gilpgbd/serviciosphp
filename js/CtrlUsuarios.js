@@ -74,9 +74,9 @@ href="usuario.html?${parámetros}">
     } else {
       html += /* html */
         `<li class="vacio">
-              -- No hay usuarios
-              registrados. --
-            </li>`;
+          -- No hay usuarios
+          registrados. --
+        </li>`;
     }
     lista.innerHTML = html;
   } catch (e) {
